@@ -1,0 +1,20 @@
+{
+  "title": "Crews",
+  "root": true,
+  "pages": [
+    "index",
+    "quickstart",
+    "[lucide/Telescope][Feature Viewer](https://demo-viewer-five.vercel.app/ )",
+    "---Guides---",
+    "agentic-chat-ui",
+    "generative-ui",
+    "human-in-the-loop",
+    "shared-state",
+    "frontend-actions",
+    "multi-agent-flows",
+    "advanced",
+    "components",
+    "---Learn---",
+    "...concepts"
+  ]
+}

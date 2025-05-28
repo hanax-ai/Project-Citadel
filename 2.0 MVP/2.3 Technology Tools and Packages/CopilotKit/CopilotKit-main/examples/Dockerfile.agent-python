@@ -1,0 +1,49 @@
+FROM public.ecr.aws/docker/library/python:3.12-bookworm
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
+
+ARG APP_DIR
+ARG WITH_LOCAL_DEPS
+
+ENV POETRY_VIRTUALENVS_CREATE=false
+
+# Install Poetry
+RUN pip install poetry
+
+# Copy SDK and install dependencies first
+COPY sdk-python/ /opt/sdk-python
+WORKDIR /opt/sdk-python
+RUN pip install -e .
+
+# Create working directory
+WORKDIR /asset
+
+# Copy entire agent directory
+COPY ${APP_DIR}/ ./
+
+# Install dependencies step by step to avoid conflicts
+RUN pip install -U "langgraph-cli[inmem]>=0.1.64"
+RUN pip install "crewai==0.118.0" "crewai-tools>=0.42.2" --force-reinstall
+# Install pydantic first since langchain depends on specific versions
+RUN pip install "pydantic>=2.7.4,<3.0.0"
+# Now install langchain packages
+RUN pip install "langchain>=0.3.4,<0.4.0" \
+                "langchain-openai>=0.2.5,<0.3.0" \
+                "langchain-anthropic>=0.3.3,<0.4.0" \
+                "langchain-google-genai>=2.0.5,<3.0.0" \
+                "langchain-community>=0.3.1,<0.4.0" \
+                "langchain-core>=0.3.25,<0.4.0"
+# Install remaining dependencies
+RUN pip install "openai>=1.52.1,<2.0.0" \
+                "python-dotenv>=1.0.1,<2.0.0" \
+                requests \
+                "fastapi>=0.110.0,<0.111.0" \
+                "uvicorn>=0.31.0,<0.32.0" \
+                pandas \
+                typing-extensions \
+                tavily-python \
+                html2text
+
+RUN mkdir -p .langgraph_api
+
+# Use poetry run for compatibility with example projects
+CMD ["poetry", "run", "demo"]
