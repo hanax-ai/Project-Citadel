@@ -1,2 +1,1 @@
-*.bat text eol=crlf 
-type .gitattributes
+﻿# Enforce line endings*.bat text eol=crlf*.py  text eol=lf*.sh  text eol=lf*.md  text eol=lf*.yml text eol=lf*.yaml text eol=lf*.json text eol=lf# Treat image and vector assets as binary*.svg binary*.png binary*.jpg binary*.jpeg binary*.gif binary*.ico binary
