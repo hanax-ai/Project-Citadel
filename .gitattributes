@@ -1,1 +1,104 @@
-﻿# Enforce line endings*.bat text eol=crlf*.py  text eol=lf*.sh  text eol=lf*.md  text eol=lf*.yml text eol=lf*.yaml text eol=lf*.json text eol=lf# Treat image and vector assets as binary*.svg binary*.png binary*.jpg binary*.jpeg binary*.gif binary*.ico binary
+﻿# .gitattributes
+
+# Auto-detect text files and ensure they have LF line endings in the repository.
+# This is a good general default.
+* text=auto eol=lf
+
+# Override for specific file types where CRLF is required (typically Windows-specific files)
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+*.ps1           text eol=crlf
+
+# Ensure consistent LF line endings for common text-based files
+*.py            text eol=lf
+*.sh            text eol=lf
+*.js            text eol=lf
+*.jsx           text eol=lf
+*.ts            text eol=lf
+*.tsx           text eol=lf
+*.html          text eol=lf
+*.css           text eol=lf
+*.scss          text eol=lf
+*.md            text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+*.json          text eol=lf
+*.txt           text eol=lf
+Dockerfile      text eol=lf
+*.conf          text eol=lf
+*.cfg           text eol=lf
+*.ini           text eol=lf
+.env            text eol=lf
+.env.* text eol=lf
+*.example       text eol=lf
+
+# Source code and config files for specific languages/frameworks
+Makefile        text eol=lf
+*.java          text eol=lf
+*.cs            text eol=lf
+*.c             text eol=lf
+*.h             text eol=lf
+*.cpp           text eol=lf
+*.hpp           text eol=lf
+*.go            text eol=lf
+*.rb            text eol=lf
+*.php           text eol=lf
+*.sql           text eol=lf
+*.xml           text eol=lf
+
+# Lock files (often JSON or YAML, but good to be explicit)
+package-lock.json text eol=lf
+yarn.lock       text eol=lf
+poetry.lock     text eol=lf
+Pipfile.lock    text eol=lf
+
+# Treat specific files as binary to prevent Git from changing line endings or showing diffs.
+# Common image formats
+*.png           binary
+*.jpg           binary
+*.jpeg          binary
+*.gif           binary
+*.ico           binary
+*.bmp           binary
+*.tif           binary
+*.tiff          binary
+
+# Vector graphics
+*.svg           binary
+*.eps           binary
+*.ai            binary
+
+# Fonts
+*.eot           binary
+*.otf           binary
+*.ttf           binary
+*.woff          binary
+*.woff2         binary
+
+# Documents
+*.pdf           binary
+*.doc           binary
+*.docx          binary
+*.xls           binary
+*.xlsx          binary
+*.ppt           binary
+*.pptx          binary
+*.odt           binary
+
+# Archives & compiled files
+*.zip           binary
+*.tar           binary
+*.gz            binary
+*.jar           binary
+*.war           binary
+*.pyc           binary
+*.pyo           binary
+*.so            binary
+*.dll           binary
+*.exe           binary
+*.class         binary
+*.o             binary
+*.obj           binary
+
+# Other
+*.DS_Store      binary
